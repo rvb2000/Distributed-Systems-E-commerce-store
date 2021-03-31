@@ -1,4 +1,4 @@
-package com.majorproject.userservicev1;
+package com.apurva.gatewayservicev1;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

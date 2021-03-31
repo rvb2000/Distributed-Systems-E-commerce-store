@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping
 public class AddressController {
 	@Autowired
 	private AddressRepository addressRepository;
@@ -23,7 +23,7 @@ public class AddressController {
 	
 	@PostMapping("/{userIdInteger}/addresses")
 	public String addAddress(@PathVariable Integer userIdInteger, @RequestBody Address address) {
-		address.setUser(new User(userIdInteger,"","",""));
+		address.setUser(new User(userIdInteger,"","","", ""));
 		addressRepository.save(address);
 		return "Address saved";
 	}

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping
 public class UserController {
 	@Autowired
 	private UserRepository userRepository;
@@ -21,11 +21,5 @@ public class UserController {
 	@GetMapping("/{userIdInteger}")
 	public Optional<User> getUser(@PathVariable Integer userIdInteger) {
 		return userRepository.findById(userIdInteger);
-	}
-	
-	@PostMapping("/addUser")
-	public String addUser(@RequestBody User user) {
-		userRepository.save(user);
-		return "User added";
 	}
 }
