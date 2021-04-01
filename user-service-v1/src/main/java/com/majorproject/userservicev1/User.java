@@ -24,21 +24,32 @@ public class User {
 	private String passwordString;
 	private String firstNameString;
 	private String lastNameString;
+	private boolean isSeller;
 	
 	public User() {
 		
 	}
 	
-
 	public User(Integer userIdInteger, @Email @NotEmpty String emailString, String passwordString,
-			String firstNameString, String lastNameString) {
+			String firstNameString, String lastNameString, boolean isSeller) {
 		super();
 		this.userIdInteger = userIdInteger;
 		this.emailString = emailString;
 		this.passwordString = passwordString;
 		this.firstNameString = firstNameString;
 		this.lastNameString = lastNameString;
+		this.isSeller = false;
 	}
+
+	public boolean isSeller() {
+		return isSeller;
+	}
+
+
+	public void setSeller(boolean isSeller) {
+		this.isSeller = isSeller;
+	}
+
 
 	public Integer getUserIdInteger() {
 		return userIdInteger;
@@ -78,8 +89,7 @@ public class User {
 
 	public void setLastNameString(String lastNameString) {
 		this.lastNameString = lastNameString;
-	}
-	
+	}	
 	
 	
 	
