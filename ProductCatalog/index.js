@@ -1,4 +1,6 @@
 const express = require('express');
+const eurekaHelper = require('./eurekaHelper');
+
 const conf = require("./config.json");
 
 const uri = conf.database.uri;
@@ -26,7 +28,8 @@ app.post('/product/seller',productApi.searchProductsBySellerId);
 
 
 
-
+//Register to Eureka
+eurekaHelper.registerWithEureka(conf.application.name, conf.server.port);
 
 
 var coll;
