@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Autocomplete - Default functionality</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+ $(document).ready(()=>{
+    
+    $( "#tags" ).autocomplete({
+      source: (req,res)=>{
+        $.get(`http://localhost:3000/search?text=${req.term}`, (data)=>{
+            res(data);
+        })
+      },
+      minLength:3,
+      autofocus:true,
+      select:(event, ui)=>{
+          let text = ui.item.value;
+          $.post(`http://localhost:3000/search`,{"text":text},(data)=>{
+              $("#print").empty();
+              $("#print").append("<hr>");
+             data.forEach(element => {
+                 console.log(element);
+                 $("#print").append("<hr>");
+                 $("#print").append("<ul>");
+                 $("#print").append(`<li> Title : ${element.title}</li>`);
+                 $("#print").append(`<li> Score : ${element.score}</li>`);
+                 $("#print").append(`<li> Price : ${element.price}</li>`);
+                 $("#print").append(`<li> average rating : ${element.avgRating}</li>`);
+                 $("#print").append(`<li> Thumbnail : ${element.thumbnail}</li>`);
+                
+                 $("#print").append("</ul>");
+                 $("#print").append("<hr>");
+             });
+             $("#print").append("<hr>");
+          });
+      }
+    });
+  } );
+  </script>
+</head>
+<body>
+ 
+<div class="ui-accordion">
+  <label for="tags">Tags: </label>
+  <input id="tags">
+</div>
+<div id="print">
+    
+</div> 
+ 
+</body>
+</html>
