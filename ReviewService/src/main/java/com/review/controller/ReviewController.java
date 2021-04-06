@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.review.model.NewReview;
+import com.review.model.Product;
 import com.review.model.Review;
 import com.review.repository.ReviewRepository;
 import com.review.resources.ReviewResource;
@@ -45,5 +46,10 @@ public class ReviewController {
 		return res.addReview(body, jwtString);
 		
 	}
+	
+//	@RequestMapping(value="/test", method=RequestMethod.GET)
+//	public Object testMethod(@RequestParam("id") String orderId) {
+//		return res.testMethod(orderId);
+//	}
 	
 }
